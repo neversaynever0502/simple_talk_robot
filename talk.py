@@ -8,9 +8,11 @@ tagsTest = jieba.analyse.extract_tags('測試',1)
 
 x = 0
 
+# 抓到名字
 name = input(">>> 請輸入你的名字: ")
 print(">>> 小白: 哈囉"+name+"~你今天有什麼煩惱嗎？")
 
+# 選擇不同的後段話（chooseNumber是有幾個選項）
 def choose():
 	chooseNumber = 10
 	randomNumber = random()
@@ -35,6 +37,7 @@ def choose():
 	elif randomNumber<(10/chooseNumber):
 		return '是啊，你說的沒錯。'
 
+# 選擇是否要後段話
 def WhetherChoose():
 	chooseNumber = 2
 	randomNumber = random()
@@ -45,6 +48,7 @@ def WhetherChoose():
 	# elif randomNumber<(3/chooseNumber):
 	# 	return 1
 
+# 決定前段開頭話，融合x(也就是之後jieba分詞的最關鍵詞)
 def randomOpen(x):
 	chooseNumber = 10
 	randomNumber = random()
@@ -69,6 +73,7 @@ def randomOpen(x):
 	elif randomNumber<(10/chooseNumber):
 		return '了解了...'
 
+# 抓到輸入的對話，並抓取關鍵詞，然後使用前段話，在隨機產生是否要後端化
 def rawInputTest():
     x = input(">>> "+name+": ")
     keyword = useJebia(x)
@@ -76,9 +81,11 @@ def rawInputTest():
     if WhetherChoose()==0:
    		print(">>> 小白: "+choose())
 
+# 這是抓取關鍵詞（使用jieba的程式碼)
 def useJebia(talk):
 	tags = jieba.analyse.extract_tags(talk,1)
 	return (tags[0])
 
+# 這部分是一直能夠對話的原因（一直執行rawInputTest()）
 while (True):
     rawInputTest()
